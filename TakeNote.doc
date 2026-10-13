@@ -1,0 +1,14 @@
+File .venv dùng  để tách 1 môi trường python riêng dùng cho project này, không dùng chung với python của hệ thống có sẵn trong máy
+Trong môi trường này có thể cài thêm các package riêng mà k liên quan gì đến hệ thống chung 
+ Câu lệnh để tạo file .venv : python -m venv .venv
+ Câu lệnh để active file và sử dụng môi trường:  source .venv/bin/activate.fish
+ Câu lệnh để tải package replicate: pip install replicate 
+
+Sau khi active add token vào trong venv bằng câu lệnh export REPLICATE_API_TOKEN="..........."
+
+Token sẽ không nằm ở máy mà sẽ tạo 1 env để kết nối 
+
+Để kiểm tra token có 2 câu lệnh :  echo $REPLICATE_API_TOKEN và python -c 'import os; print(os.getenv("REPLICATE_API_TOKEN"))'
+
+Tải dotenv để python đọc được file env :  pip install python-dotenv
+ Kiểm tra : pip show python-dotenv
