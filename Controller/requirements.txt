@@ -1,6 +1,6 @@
-pathlib
+fastapi
 uvicorn
 python-multipart
 replicate
 python-dotenv
-gunicorn
+gunicorn 
