@@ -13,4 +13,4 @@ if __name__ == "__main__":
     print("📍 Frontend Interactive Studio: http://localhost:8000/static/frontend/index.html")
     print("📍 Swagger API Documentation: http://localhost:8000/docs")
     print("==================================================")
-    uvicorn.run("backend.server:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("Controller.server:app", host="0.0.0.0", port=8000, reload=True)
