@@ -791,3 +791,264 @@ input:checked + .slider:before {
     margin-bottom: 1rem;
 }
 
+/* ====================================================
+   B2C CHECKOUT & PAYMENT STYLING
+   ==================================================== */
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checkout-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.checkout-plan-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-plan-card:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.checkout-plan-card.active {
+    border-color: var(--accent-primary);
+    background: rgba(99, 102, 241, 0.12);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+}
+
+.checkout-plan-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkout-plan-price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+}
+
+/* VietQR & Bank Card */
+.vietqr-wrapper {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1.5rem;
+}
+
+.vietqr-wrapper .vietqr-img {
+    width: 240px;
+    max-width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    transition: transform var(--transition-fast);
+}
+
+.vietqr-wrapper .vietqr-img:hover {
+    transform: scale(1.03);
+}
+
+.vietqr-caption {
+    margin-top: 0.75rem;
+    color: #475569;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.bank-details-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bank-row:last-child {
+    border-bottom: none;
+}
+
+.bank-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.bank-value-group {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.bank-value {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-family: monospace;
+}
+
+.bank-value.highlight-code {
+    color: #4ade80;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.copy-btn {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: #a5b4fc;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.copy-btn:hover {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+.payment-steps {
+    margin: 1.5rem 0;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.payment-steps li {
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+}
+
+.admin-notice-box {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px dashed rgba(245, 158, 11, 0.4);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #fcd34d;
+    line-height: 1.5;
+}
+
+/* User Credits Badge */
+.user-credits-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c7d2fe;
+}
+
+/* Toast Message */
+.toast-notice {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1e1b4b;
+    border: 1px solid var(--accent-primary);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+    z-index: 9999;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Success Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+}
+
+.modal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    max-width: 480px;
+    width: 100%;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Pricing Grid for 4 Plans */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    max-width: 1250px;
+    margin: 0 auto;
+    align-items: stretch;
+}

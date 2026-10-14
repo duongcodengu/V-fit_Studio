@@ -7,6 +7,7 @@ from typing import List, Optional
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -24,11 +25,22 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# 2. Configure CORS
+# 2. Configure CORS to allow Cloudflare Workers frontend and local development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "https://v-fit-studio.vfit.workers.dev",
+        "https://v-fit-studio.onrender.com",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "*"
+    ],
+    allow_origin_regex=r"https://.*\.workers\.dev",
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -84,9 +96,9 @@ def get_catalog():
 
     garments = []
     garment_meta = {
-        "vay1": {"name": "Floral Summer Dress", "category": "Dress", "price": "$89.00"},
-        "ao1": {"name": "Classic White Shirt", "category": "Top", "price": "$49.00"},
-        "quan1": {"name": "Tailored Trousers", "category": "Pants", "price": "$69.00"}
+        "vay1": {"name": "Đầm Hoa Mùa Hè Nữ Tính", "category": "Váy Liền", "price": "289.000đ"},
+        "ao1": {"name": "Áo Sơ Mi Trắng Thanh Lịch", "category": "Áo Nữ", "price": "189.000đ"},
+        "quan1": {"name": "Quần Âu Dáng Suông Tôn Dáng", "category": "Quần Nữ", "price": "249.000đ"}
     }
     for f in GARMENT_DIR.glob("*.*"):
         if f.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"] or f.name in ["vay"]:
@@ -303,6 +315,23 @@ async def process_try_on(
                     tmp_p.unlink()
                 except Exception:
                     pass
+
+# Serve SPA Frontend fallback
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    if full_path.startswith("api/") or full_path.startswith("static/") or full_path.startswith("docs") or full_path.startswith("openapi.json"):
+        raise HTTPException(status_code=404, detail="Not Found")
+    
+    view_dir = BASE_DIR / "View"
+    requested_file = view_dir / full_path
+    if requested_file.is_file():
+        return FileResponse(requested_file)
+    
+    index_file = view_dir / "index.html"
+    if index_file.is_file():
+        return FileResponse(index_file)
+    
+    raise HTTPException(status_code=404, detail="Not Found")
 
 if __name__ == "__main__":
     import uvicorn

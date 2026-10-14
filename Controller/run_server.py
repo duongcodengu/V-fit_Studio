@@ -1,10 +1,19 @@
-import uvicorn
+import sys
 import os
 from pathlib import Path
+import uvicorn
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
-load_dotenv(BASE_DIR / ".env")
+ROOT_DIR = BASE_DIR.parent
+
+# Add root directory and Controller directory to Python search path
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+load_dotenv(ROOT_DIR / ".env")
 
 if __name__ == "__main__":
     print("==================================================")
